@@ -5,15 +5,14 @@ import 'react-quill/dist/quill.snow.css';
 import { useNavigate } from "react-router-dom";
 import MovieCard from './pageResources/MovieCard';
 import { getMovies, addNewReview, getReviews, deleteReview, updateReview, findByMovieTitle, updateMovieAverageRating } from "../data/repository";
-import {
-  MDBIcon,
-  MDBBtn,
-  MDBModal,
-  MDBModalDialog,
-  MDBModalContent,
-  MDBModalBody
-} from 'mdb-react-ui-kit';
+import { MDBIcon, MDBBtn, MDBModal, MDBModalDialog, MDBModalContent, MDBModalBody } from 'mdb-react-ui-kit';
 import { FaStar} from 'react-icons/fa'
+
+/**
+ * 
+ * @param {username} props.username - curent user's username
+ * @returns Review page
+ */
 
 function Review(props) {
   const navigate = useNavigate();
@@ -32,12 +31,25 @@ function Review(props) {
     setEditReviewModal(true);
   };  
 
+  /**
+   * Sets the rating state to the new rating.
+   * @param {Number} newRating - new rating for the post
+   */
   // Rating change handler
   const handleRatingChange = (newRating) => {
     setRating(newRating);
   };
 
-  // Edit Review functionality
+  /**
+   * Edit post handler.
+   * @async
+   * @method
+   * @param {*} event
+   * @param {Number} newRating - new rating for the post
+   * @param {String} newComment - new comment for the post
+   * @param {Number} postIndex - index of the post to be edited
+   * @returns 
+   */
   const handleEditPost = async (event, newRating, newComment, postIndex) => {
     event.preventDefault();
 
@@ -82,7 +94,14 @@ function Review(props) {
     }
   };
 
-  // Remove review functionality
+  /**
+   * Remove post handler.
+   * @async
+   * @method
+   * @param {*} event 
+   * @param {Number} index - index of the post to be deleted
+   * @param {String} title - title of the movie to be deleted
+   */
   const handleRemovePost = async (event, index, title) => {
     event.preventDefault();
     const confirmDelete = window.confirm("Are you sure you want to delete your review?");
@@ -108,9 +127,7 @@ function Review(props) {
     }
   };
 
-  // When the component is first loaded, the code checks if there's any review data stored. 
-  // Then the code fetches the reviews data from the database. 
-  // Next it updates the posts state with the fetched reviews and the component re-render, displaying the reviews on the page.
+  // Fetches the reviews data from the database every time the page rerenders.
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -125,7 +142,7 @@ function Review(props) {
       fetchData();
   }, []);
 
-  // fetches the movies data from the database and sort it. 
+  // Fetches the movies data from the database and sort it. 
   useEffect(() => {
     const fetchMovieData = async () => {
       try {
@@ -147,7 +164,15 @@ function Review(props) {
     window.scrollTo(0, 0);
   }, [posts]);
 
-  // Submit review functionality
+  /**
+   * Submit Review handler.
+   * @async
+   * @method
+   * @param {*} event 
+   * @param {Number} rating - rating for the post
+   * @param {String} title - title of the reviewed movie
+   * @returns 
+   */
   const handleSubmit = async (event, rating, title) => {
     event.preventDefault();
 
@@ -176,14 +201,14 @@ function Review(props) {
     // Add new review into database with username, movie title, rating, and comment as body
     await addNewReview({username: props.username, title: title, movie_id: movie.movie_id, rating: rating, comment: postTrimmed})
 
-    // update movie average rating
+    // Update movie average rating
     await updateMovieAverageRating(movie.movie_id);
 
     // Correct values are being added
     const reviews = await getReviews(); // Fetch updated reviews
     setPosts(reviews); // Update state with new reviews
 
-    // Reset post content.
+    // Reset post content
     setPost("");
     // Reset error message
     setErrorMessage("");
@@ -203,6 +228,7 @@ function Review(props) {
           movies.map((movie) =>
             <div className='movie-column'>
               <MovieCard
+              data-testid="movie-card"
               imageUrl={movie.imageURL}
               title={movie.title}
               text="Click to leave a review"
@@ -230,7 +256,7 @@ function Review(props) {
                   { 
                     x.username === props.username && (
                       <div>
-                        <MDBBtn outline color="light" floating href="" role="button" className="forum-delete-icon" onClick={() => showReview(index)}>
+                        <MDBBtn outline color="light" floating href="" role="button" className="forum-delete-icon" id="review-delete-btn" aria-label='edit'  name='edit-button' onClick={() => showReview(index)}>
                           <MDBIcon far icon="edit" style={{fontSize: '1rem'}}/>
                         </MDBBtn>
                         <MDBBtn outline color="light" floating href="" role="button" className="forum-delete-icon" onClick={(event) => handleRemovePost(event, index, x.movieTitle)}>
@@ -265,7 +291,7 @@ function Review(props) {
                           {[...Array(5)].map((item, index) => {
                             const currRating = index + 1;
                             return (
-                              <label key={index} onMouseEnter={() => setRating(currRating)}>
+                              <label htmlFor="rating" key={index} onMouseEnter={() => setRating(currRating)}>
                                 <input type="radio" value={currRating} onClick={() => setRating(currRating)} />
                                 <FaStar
                                   className="star"

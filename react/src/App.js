@@ -14,7 +14,10 @@ function App() {
   const [email, setEmail] = useState(localStorage.getItem("email") || null);
   const [signupDate, setSignUpDate] = useState(localStorage.getItem("signupDate") || null);
 
-  // login user function
+  /**
+   * Login user handler.
+   * @param {String} email 
+   */
   const loginUser = async (email) => {
     // Retrieve user from database
     const user = await getUserByEmail(email);
@@ -40,7 +43,6 @@ function App() {
     localStorage.removeItem("email");
     localStorage.removeItem("signupDate");
     localStorage.removeItem("blocked");
-
   }
 
   return (
@@ -58,7 +60,7 @@ function App() {
             </Routes>
           </div>
         </main>
-        <Footer />
+        <Footer/>
       </Router>
     </div>
   );
