@@ -66,7 +66,9 @@ exports.update = async (req, res) => {
 exports.updateAverageRating = async (req, res) => {
   const ratingCount = await Post.count({
     where: {
-      movie_id: req.params.id
+      movie_id: req.params.id,
+      rating: { [db.Op.gt]: 0 },
+
     }
   }); 
 
@@ -77,7 +79,7 @@ exports.updateAverageRating = async (req, res) => {
     return;
   }
 
-  const totalRating = await Post.sum('rating', { where: { movie_id: req.params.id } });
+  const totalRating = await Post.sum('rating', { where: { movie_id: req.params.id, rating: { [db.Op.gt]: 0 }} });
 
   const averageRating = totalRating / ratingCount;
 
@@ -92,13 +94,13 @@ exports.updateAverageRating = async (req, res) => {
       });
     } else {
       res.send({
-        message: `Cannot update Movie average rating with movie_id=${id}. Maybe Movie was not found or req.body is empty!`
+        message: `Cannot update Movie average rating with movie_id=${req.params.id}. Maybe Movie was not found or req.body is empty!`
       });
     }
   })
   .catch(err => {
     res.status(500).send({
-      message: `Error updating Movie average rating with movie_id=${id}`
+      message: `Error updating Movie average rating with movie_id=${req.params.id}`
     });
   });
 }

@@ -6,7 +6,7 @@ function Users() {
     const [users, setUsers] = useState(null);
     const { setMessage } = useContext(MessageContext);
 
-    // Load posts.
+    // Load users.
     useEffect(() => {
       loadUsers();
     }, []);

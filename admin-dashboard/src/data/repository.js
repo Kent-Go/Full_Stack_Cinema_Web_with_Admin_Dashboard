@@ -101,6 +101,28 @@ async function gqlGetMovies() {
   return data.get_movies;
 }
 
+async function gqlAllMovies() {
+  const query = gql`
+    {
+      all_movies {
+        movie_id,
+        title,
+        averageRating,
+        viewCount,
+        posts {
+          post_id,
+          title,
+          rating,
+          comment
+        }
+      }
+    }
+  `;
+
+  const data = await request(GRAPH_QL_URL, query);
+  return data.all_movies;
+}
+
 async function gqlGetSessionTime(movie_id) {
   const query = gql`
     {
@@ -186,5 +208,6 @@ export {
   gqlBlockUser,
   gqlUnblockUser,
   gqlGetSessionTime,
-  gqlGetSessionID
+  gqlGetSessionID,
+  gqlAllMovies
 }
