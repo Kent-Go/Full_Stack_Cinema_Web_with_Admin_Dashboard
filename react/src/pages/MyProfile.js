@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { updateUser, deleteUser, getUserByEmail, findUser, getUserReservation } from "../data/repository";
 import { useNavigate } from "react-router-dom";
-import {
-  MDBIcon,
-  MDBBtn,
-  MDBModal,
-  MDBModalDialog,
-  MDBModalContent,
-  MDBModalBody
-} from 'mdb-react-ui-kit';
+import { MDBIcon, MDBBtn, MDBModal, MDBModalDialog, MDBModalContent, MDBModalBody } from 'mdb-react-ui-kit';
 import './pagesCSS/MyProfile.css';
 import '../pages/pagesCSS/SignIn.css';
 
+/**
+ * MyProfile component.
+ * @param {loginUser} props.loginUser - loginUser function from App.js
+ * @param {String} props.username - username of the current user from App.js
+ * @param {String} props.email - email of the current user from App.js
+ * @param {Date} props.signUpDate - sign up date of the current user from App.js
+ */
 function MyProfile(props) {
   const navigate = useNavigate();
   const [fields, setFields] = useState({ username: (props.username), email: (props.email)});
@@ -154,11 +154,11 @@ function MyProfile(props) {
             </p>
           )}
           <div className="profile-header">
-              <h2>My Tickets</h2>
+            <h2>My Tickets</h2>
           </div>
           {/* If user HAS reserved a ticket*/}
-          {tickets && tickets.length > 0 ? (
-            tickets.map((ticket) => (
+          {tickets && tickets.length > 0 ? 
+            (tickets.map((ticket) => (
               <div key={ticket.reservation_id} className="ticket">
                 <p>
                   <strong>Movie Title:</strong> {ticket.title} <br/>
@@ -166,13 +166,12 @@ function MyProfile(props) {
                   <strong>Number of Tickets:</strong> {ticket.number_tickets} <br/>
                 </p>
               </div>
-            ))
-          ) : (
+              ))
+            ) : (
             <p>No tickets found.</p>
           )}
         </div>
       </section>
-
       <MDBModal show={EditProfileModal} setShow={setEditProfileModal} tabIndex="-1" centered>
         <MDBModalDialog centered style={{ maxWidth: "35%" }} size="lg">
           <MDBModalContent style={{backgroundColor: "black", border: "2px solid #E50815", borderRadius: "0px",}}>
@@ -197,9 +196,7 @@ function MyProfile(props) {
                       </div>
                       {emailErrorMessage !== null && (
                         <div className="form-container">
-                          <span className="text-danger">
-                            {emailErrorMessage}
-                          </span>
+                          <span className="text-danger">{emailErrorMessage}</span>
                         </div>
                       )}
                       <div className="form-container">

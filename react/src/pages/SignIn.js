@@ -3,6 +3,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { verifyUser } from "../data/repository";
 import '../pages/pagesCSS/SignIn.css';
 
+/**
+ * SignIn component.
+ * @param {loginUser} props.loginUser - loginUser function from App.js
+ */
 function SignIn(props) {
   const [fields, setFields] = useState({ email: "", password: "" });
   const [errorMessage, setErrorMessage] = useState(null);
@@ -16,15 +20,17 @@ function SignIn(props) {
 
     // Copy email and password fields into temp
     const temp = { email: fields.email, password: fields.password };
-    // OR use spread operator.
-    // const temp = { ...fields };
 
     // Update field and state.
     temp[name] = value;
     setFields(temp);
   }
 
-  // Generic submit handler for sign in
+  /**
+   * Sign In handler.
+   * @param {*} event 
+   * @returns Profile page if sign in is successful
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
 

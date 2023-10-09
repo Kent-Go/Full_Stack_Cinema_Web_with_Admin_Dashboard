@@ -3,6 +3,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { createUser, findUser, getUserByEmail } from "../data/repository";
 import '../pages/pagesCSS/SignIn.css';
 
+/**
+ * Sign Up component.
+ * @param {loginUser} props.loginUser - loginUser function from App.js
+ */
 function SignUp(props) {
   const [fields, setFields] = useState({ username: "", email: "", password: "" });
   const [errorMessage, setErrorMessage] = useState(null);
@@ -29,14 +33,13 @@ function SignUp(props) {
     setFields(temp);
   }
 
-  // Generic submit handler for sign up
+  /**
+   * Sign Up handler.
+   * @param {*} event 
+   * @navigate Homepage if sign up is successful
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Validate form and if invalid do not contact API.
-    // const { trimmedFields, isValid } = await handleValidation();
-    // if(!isValid)
-    //   return;
 
     // Set variable for sign-up error due to fail validation
     var signUpError = false;
@@ -102,9 +105,6 @@ function SignUp(props) {
     alert('Sign Up Successfull!');
     // Navigate to the profile page.
     navigate("/");
-    // Refresh page
-    // navigate(0);
-    // Terminate handleSubmit if user verification sucess
     return;
   }
 
@@ -116,8 +116,7 @@ function SignUp(props) {
             <form onSubmit={handleSubmit} noValidate>
               <div className="form-container">
                 <label htmlFor="username">Username</label>
-                <input name="username" id="username" 
-                  value={fields.username} onChange={handleInputChange} required/>
+                <input name="username" id="username" value={fields.username} onChange={handleInputChange} required/>
               </div>
               {usernameErrorMessage !== null &&
                 <div className="form-container">
@@ -126,8 +125,7 @@ function SignUp(props) {
               }
               <div className="form-container">
                 <label htmlFor="email">Email</label>
-                <input type="email" name="email" id="email" required 
-                  value={fields.email} onChange={handleInputChange} />
+                <input type="email" name="email" id="email" required value={fields.email} onChange={handleInputChange}/>
               </div>
               {emailErrorMessage !== null &&
                 <div className="form-container">
@@ -136,8 +134,7 @@ function SignUp(props) {
               }
               <div className="form-container">
                 <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" 
-                  value={fields.password} onChange={handleInputChange} required/>
+                <input type="password" name="password" id="password" value={fields.password} onChange={handleInputChange} required/>
               </div>
               {passwordErrorMessage !== null &&
                 <div className="form-container">
@@ -145,7 +142,7 @@ function SignUp(props) {
                 </div>
               }
               <div className="form-container">
-                  <input type="submit" className="btn submit-btn" value="SIGN UP" />
+                  <input type="submit" className="btn submit-btn" value="SIGN UP"/>
               </div>
               {errorMessage !== null &&
                 <div className="form-container">
@@ -154,7 +151,7 @@ function SignUp(props) {
               }
               <div className="form-container">
                 <p className="signup-prompt">Already have an account?</p>
-                  <Link className="btn submit-btn" to="/sign-in">Sign In</Link>
+                <Link className="btn submit-btn" to="/sign-in">Sign In</Link>
               </div>
             </form>
         </div>
