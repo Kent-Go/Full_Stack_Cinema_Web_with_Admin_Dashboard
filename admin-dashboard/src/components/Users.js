@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { gqlGetUsers, gqlBlockUser, gqlUnblockUser } from "../data/repository";
-import MessageContext from "../context/MessageContext";
+import MessageContext from "./MessageContext";
 
 function Users() {
     const [users, setUsers] = useState(null);
@@ -33,7 +33,7 @@ function Users() {
     };
 
     const handleUnblock = async (username) => {
-      if(!window.confirm(`Are you sure you want to block?`))
+      if(!window.confirm(`Are you sure you want to unblock?`))
       return;
       
       const isBlocked = await gqlUnblockUser(username);

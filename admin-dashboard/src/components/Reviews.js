@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { gqlGetPosts, gqlDeletePost } from "../data/repository";
-import MessageContext from "../context/MessageContext";
+import MessageContext from "./MessageContext";
 
 function Reviews() {
     const [reviews, setReviews] = useState(null);
