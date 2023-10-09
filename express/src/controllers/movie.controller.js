@@ -139,3 +139,26 @@ exports.delete = async (req, res) => {
     });
   }
 };
+
+exports.incrementViewCount = async (req, res) => {
+  const title = req.params.title;
+  try {
+    // Delete all posts related to the movie
+    await Movie.increment('viewCount', { by: 1, where: { title:title }})
+    
+    // if (num == 1) {
+    //   res.send({
+    //     message: "Movie viewCount was increment successfully!"
+    //   });
+    // } else {
+    //   res.send({
+    //     message: `Cannot increment Movie viewCount with title=${title}. Maybe Movie was not found!`
+    //   });
+    // }
+  } catch (e) {
+    console.log(err)
+    res.status(500).send({
+      message: "Could not increment Movie viewCount with title" + title
+    });
+  }
+};

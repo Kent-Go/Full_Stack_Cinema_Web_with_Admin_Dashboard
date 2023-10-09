@@ -23,6 +23,9 @@ module.exports = (express, app) => {
   // Delete a movie based on movie_id
   router.delete("/delete/:id", controller.delete);
 
+  // Delete a movie based on movie_id
+  router.put("/incrementViewCount/:title", controller.incrementViewCount);
+
   // Add routes to server.
   app.use("/api/movies", router);
 };

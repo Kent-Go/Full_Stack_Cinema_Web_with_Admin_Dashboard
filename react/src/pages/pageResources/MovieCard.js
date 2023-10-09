@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
+import { incrementViewCount } from '../../data/repository';
 
 import {
   MDBCard,
@@ -74,11 +75,16 @@ function MovieCard({ imageUrl, title, averageRating, text, type, sessionTimeArra
     }
   };
 
+  // increment movie view count handle
+  const handleViewMovie = async () => {
+    await incrementViewCount(title);
+  };
+
   // MovieCard for displaying coming soon movie
   if (type === "movie") {
     return (
       <>
-      <MDBCard className="hover-overlay" onClick={toggleShowMovie} style = {{cursor: "pointer"}}>
+      <MDBCard className="hover-overlay" onClick={function(event){ toggleShowMovie(); handleViewMovie()}} style = {{cursor: "pointer"}}>
         <img
           src={imageUrl}
           position="top"
@@ -131,7 +137,7 @@ function MovieCard({ imageUrl, title, averageRating, text, type, sessionTimeArra
   else if (type === "movieReservation") {
     return (
       <>
-      <MDBCard className="hover-overlay" onClick={toggleShowMovie} style = {{cursor: "pointer"}}>
+      <MDBCard className="hover-overlay" onClick={function(event){ toggleShowMovie(); handleViewMovie()}} style = {{cursor: "pointer"}}>
         <img
           src={imageUrl}
           position="top"
@@ -195,11 +201,11 @@ function MovieCard({ imageUrl, title, averageRating, text, type, sessionTimeArra
       </>
     );
   } 
-  // MovieCard for displaying movie for review canClick ? this.handler : undefined
+  // MovieCard for displaying movie for review
   else {
     return (
       <>
-      <MDBCard className="hover-overlay" onClick={blocked === '0' ? toggleShowReview : undefined} style = {{cursor: "pointer"}}>
+      <MDBCard className="hover-overlay" onClick={blocked === '0' ? function(event){ toggleShowReview(); handleViewMovie()} : undefined} style = {{cursor: "pointer"}}>
         <img src={imageUrl} position="top" style={{aspectRatio:"2/3", width: "250px", objectFit: "cover"}}/>
         <div className='mask' style={{backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
           <div>

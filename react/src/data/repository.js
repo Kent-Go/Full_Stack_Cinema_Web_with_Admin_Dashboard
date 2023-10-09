@@ -84,6 +84,12 @@ async function updateMovieAverageRating(id) {
   return response.data;
 }
 
+// Incrmeent movie view count
+async function incrementViewCount(title) {
+  const response = await axios.put(API_HOST + `/api/movies/incrementViewCount/${title}`); 
+  return response.data;
+}
+
 // Get Session Time based on movie id
 async function getSessionTime(id) {
   const response = await axios.get(API_HOST + `/api/sessions/select/${id}`); 
@@ -126,4 +132,5 @@ export {
   getUserReservation,
   addReservation,
   updateSessionTicketAvailable,
+  incrementViewCount
 }
