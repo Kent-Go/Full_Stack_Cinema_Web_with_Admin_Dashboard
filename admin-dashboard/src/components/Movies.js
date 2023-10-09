@@ -6,6 +6,16 @@ import MovieModal from './miniComponents/MovieModal';  // Import the MovieModal 
 import AddMovieModal from './miniComponents/AddMovieModal';  // Import the AddMovieModal component
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
 function Movies() {
   const [movies, setMovies] = useState([]);
@@ -54,8 +64,61 @@ function Movies() {
     setAddModalOpen(false);
   }
 
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
+      
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: "bottom",
+        labels: {
+          fontColor: "#323130",
+          fontSize: 14
+        }
+      },
+    },
+    scales: {
+      y:
+        {
+          min: 0,
+          max: 120,
+        },
+        xAxes: [{ barPercentage: 0.5 }]
+      }
+        
+  };
+
+  const data = {
+    labels: movies.map(movie => movie.title),
+    datasets: [
+      {
+        label: "Number Of Views",
+        data: movies.map(movie => movie.viewCount),
+        fill: true,
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)"
+      }
+    ]
+  };
+
   return (
     <div>
+
+      <div className="chart-title">
+        <h1>Number Of View Per Movie</h1>
+      </div>
+      <div className='barchart'>
+        <Bar data={data} options={options} />
+      </div>
+
       <div className="header">
         <h1>Now Showing Movies</h1>
         <button className="add-movie-button" onClick={handleAddMovie} title='Click to add new movies'>

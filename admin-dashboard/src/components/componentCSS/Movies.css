@@ -26,6 +26,16 @@ tr:hover {
     background-color: #edecec8a;
 }  
 
+.chart-title {
+    text-align: center;
+}
+
+.barchart {
+    margin: auto;
+    width: 50vw !important;
+    height: 50vh !important;
+}
+
 .header {
     display: flex;
     align-items: center;

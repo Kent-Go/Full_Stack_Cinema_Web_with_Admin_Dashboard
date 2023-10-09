@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { gqlGetPosts, gqlDeletePost, gqlGetMovies, gqlAllMovies } from "../data/repository";
+import { gqlGetPosts, gqlDeletePost, gqlAllMovies } from "../data/repository";
 import './componentCSS/Reviews.css';
 import MessageContext from "./MessageContext";
 import { Bar } from 'react-chartjs-2';
@@ -56,8 +56,6 @@ function Reviews() {
       responsive: true,
       plugins: {
         legend: {
-          
-          position: 'top',
           display: true,
           position: "bottom",
           labels: {
@@ -78,7 +76,6 @@ function Reviews() {
           
     };
 
-    // this could come from an API
     const data = {
       labels: movies.map(movie => movie.title),
       datasets: [
