@@ -67,7 +67,6 @@ async function gqlGetPosts() {
   `;
 
   const data = await request(GRAPH_QL_URL, query);
-
   return data.all_posts;
 }
 
@@ -79,9 +78,7 @@ async function gqlDeletePost(post_id) {
   `;
 
   const variables = { post_id };
-
   const data = await request(GRAPH_QL_URL, query, variables);
-
   return data.delete_post;
 }
 
@@ -151,6 +148,23 @@ async function gqlGetSessionID(movie_id, sessionTime) {
   return data.get_sessionID;
 }
 
+async function gqlAllReservations() {
+  const query = gql`
+  {
+    all_reservations {
+      reservation_id,
+      reservation_date,
+      number_tickets,
+      session_time, 
+      title
+    }
+  }
+  `;
+
+  const data = await request(GRAPH_QL_URL, query);
+  return data.all_reservations;
+}
+
 // --- REST API ----------------------------------------------------------------------------------
 // Get the movie object from database based on movie title
 async function findByMovieTitle(title) {
@@ -209,5 +223,6 @@ export {
   gqlUnblockUser,
   gqlGetSessionTime,
   gqlGetSessionID,
-  gqlAllMovies
+  gqlAllMovies,
+  gqlAllReservations
 }

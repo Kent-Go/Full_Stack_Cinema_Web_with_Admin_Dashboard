@@ -16,7 +16,10 @@ module.exports = (sequelize, DataTypes) =>
     title: {
       type: DataTypes.STRING,
       allowNull: false
-    },
+    }, reservation_date : {
+      type: DataTypes.STRING(50),
+      allowNull: false
+    }
   }, {
     // Don't add the timestamp attributes (updatedAt, createdAt).
     timestamps: false, 

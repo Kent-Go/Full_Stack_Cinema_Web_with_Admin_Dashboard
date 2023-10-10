@@ -19,7 +19,8 @@ exports.findByUsername = async (req, res) => {
 
   res.json(reservations);
 };
-// Create a movie in the database.
+
+// Create a new reservation in the database.
 exports.create = async (req, res) => {
 
   const reservation = await Reservation.create({
@@ -28,6 +29,7 @@ exports.create = async (req, res) => {
     session_time: req.body.session_time,
     number_tickets: req.body.number_tickets,
     title: req.body.title,
+    reservation_date: req.body.reservation_date
   });
 
   res.json(reservation);

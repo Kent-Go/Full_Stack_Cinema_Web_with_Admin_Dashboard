@@ -45,6 +45,14 @@ graphql.schema = buildSchema(`
     ticketAvailable: Int,
   }
 
+  type Reservation {
+    reservation_id: Int,
+    session_time: String,
+    number_tickets: Int,
+    title: String,
+    reservation_date: String
+  }
+
   # The input type can be used for incoming data.
   input PostInput {
     post_id: Int,
@@ -69,7 +77,8 @@ graphql.schema = buildSchema(`
     all_movies: [Movie],
     get_movies: [Movie],
     get_sessionTime(movie_id: Int): [Session],
-    get_sessionID(movie_id: Int, sessionTime: String): Session
+    get_sessionID(movie_id: Int, sessionTime: String): Session,
+    all_reservations: [Reservation]
   }
 
   # Mutations (modify data in the underlying data-source, i.e., the database).
@@ -109,24 +118,11 @@ graphql.root = {
   get_sessionID: async(args) =>{
     return await db.session.findOne({ where: { movie_id: args.movie_id, sessionTime: args.sessionTime } });
   },
+  all_reservations: async () => {
+    return await db.reservation.findAll();
+  },
 
   // Mutations.
-  // create_owner: async (args) => {
-  //   const owner = await db.owner.create(args.input);
-
-  //   return owner;
-  // },
-  // update_owner: async (args) => {
-  //   const owner = await db.owner.findByPk(args.input.email);
-  
-  //   // Update owner fields.
-  //   owner.first_name = args.input.first_name;
-  //   owner.last_name = args.input.last_name;
-
-  //   await owner.save();
-
-  //   return owner;
-  // },
   block_user: async  (args) => {
     const user = await db.user.findByPk(args.username);
     

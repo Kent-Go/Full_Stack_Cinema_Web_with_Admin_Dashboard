@@ -15,6 +15,10 @@ function Home(props) {
   const [reservationErrorMessage, setReservationErrorMessage] = useState(null);
   const navigate = useNavigate();
 
+  // constant variable for reservation date and its format
+  const todayDate = new Date();
+  const dateFormat = { year: 'numeric', month: 'short', day: 'numeric' };
+
   const handleSubmit = async (event, time, ticket, title) => {
     event.preventDefault();
 
@@ -40,7 +44,7 @@ function Home(props) {
     }
 
     // Add new reservation to database
-    await addReservation({username: props.username, session_time: time, number_tickets: ticket, title: title});
+    await addReservation({username: props.username, session_time: time, number_tickets: ticket, title: title, reservation_date: todayDate.toLocaleDateString('en-GB', dateFormat)});
     // Update session time ticket availability in database
     await updateSessionTicketAvailable({session_time: time, number_tickets: ticket, title: title});
     // Provide reservation success visual cue
