@@ -66,6 +66,7 @@ function Users() {
               </tr>
             </thead>
             <tbody>
+                {/* Display all users in table */}
                 {users.map(user =>
                 <tr >
                     <td>{user.username}</td>

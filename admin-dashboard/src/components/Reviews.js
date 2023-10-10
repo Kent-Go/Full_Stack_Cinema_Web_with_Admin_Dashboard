@@ -97,7 +97,7 @@ function Reviews() {
         const isDeleted = await gqlDeletePost(post_id);
 
         if(isDeleted) {
-        // Could remove the owner that was deleted or refresh the posts.
+        // Could remove the post that was deleted or refresh the posts.
         // Here the posts are refreshed.
         await loadPosts();
 
@@ -115,8 +115,9 @@ function Reviews() {
             <h1>Number Of Review Per Movie</h1>
           </div>
           <div className='barchart'>
-              <Bar data={data} options={options} />
-            </div>
+            {/* Display the bar chart */}
+            <Bar data={data} options={options} />
+          </div>
           <div className='averageNumberReview'>
             <h3 style={{marginRight : "5px"}}>Average Number of Review Per Movie:</h3>
             {averageReviewPerMovie > 0 && <h3>{averageReviewPerMovie.toFixed(2)}</h3>}
@@ -139,6 +140,7 @@ function Reviews() {
               </tr>
             </thead>
             <tbody>
+                {/* Display all reviews in table */}
                 {reviews.map(review =>
                 <tr >
                     <td>{review.post_id}</td>

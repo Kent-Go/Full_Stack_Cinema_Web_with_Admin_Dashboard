@@ -21,7 +21,6 @@ async function gqlGetUsers() {
   `;
 
   const data = await request(GRAPH_QL_URL, query);
-
   return data.all_users;
 }
 
@@ -33,9 +32,7 @@ async function gqlBlockUser(username) {
   `;
 
   const variables = { username };
-
   const data = await request(GRAPH_QL_URL, query, variables);
-
   return data.block_user;
 }
 
@@ -47,9 +44,7 @@ async function gqlUnblockUser(username) {
   `;
 
   const variables = { username };
-
   const data = await request(GRAPH_QL_URL, query, variables);
-
   return data.unblock_user;
 }
 
@@ -184,6 +179,7 @@ async function updateMovie(id, title) {
   return response.data;
 }
 
+// Delete movie
 async function deleteMovie(id) {
   const response = await axios.delete(API_HOST + `/api/movies/delete/${id}`); 
   return response.data;

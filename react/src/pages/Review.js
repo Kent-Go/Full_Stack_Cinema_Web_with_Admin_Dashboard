@@ -269,8 +269,6 @@ function Review(props) {
                 <div className="post-content">
                   <p>Movie Rating: {x.rating} star</p>
                   <div dangerouslySetInnerHTML={{ __html: x.comment }} />
-
-                  {/* <p>{{__html: x.comment}}</p> */}
                 </div>
               </div>
               )

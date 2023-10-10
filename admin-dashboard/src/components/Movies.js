@@ -183,6 +183,7 @@ function Movies() {
         <h1>Number Of View Per Movie</h1>
       </div>
       <div className='barchart'>
+        {/* Display the bar chart */}
         <Bar data={movieViewData} options={movieViewOptions} />
       </div>
 
@@ -190,6 +191,7 @@ function Movies() {
         <h1>Number Of Ticket Reservation Per Day</h1>
       </div>
       <div className='barchart'>
+        {/* Display the line chart */}
         <Line data={reservationData} options={reservationDataOptions} />
       </div>
 
@@ -211,6 +213,7 @@ function Movies() {
           </tr>
         </thead>
         <tbody>
+          {/* Display all movies in table */}
           {movies.map((movie) => (
             <tr key={movie.movie_id} onClick={() => handleRowClick(movie)} title='Click to edit or delete'>
               <td>{movie.movie_id}</td>

@@ -22,7 +22,7 @@ function MovieCard({ imageUrl, title, averageRating, text, type, sessionTimeArra
   const [time, setTime] = useState('');
   const [sessionTicketAvailable, setSessionTicketAvailable] = useState(null);
   const [ticketAvailable, setTicketAvailable] = useState(null);
-  const [blocked, setBlocked] = useState(localStorage.getItem("blocked") || null);
+  const blocked = localStorage.getItem("blocked") || null;
 
   const [hover, setHover] = useState(null);
   const [MovieModal, setMovieModal] = useState(false);

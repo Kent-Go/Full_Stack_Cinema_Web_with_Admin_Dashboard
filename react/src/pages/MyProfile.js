@@ -120,6 +120,7 @@ function MyProfile(props) {
     await updateUser(props.username, fields.username, fields.email); // Wait for updateUser to finish before continuing
     const user = await getUserByEmail(fields.email)
     
+    // Set new username and email to local storage
     localStorage.setItem("username", user.username);
     localStorage.setItem("email", user.email);
 
