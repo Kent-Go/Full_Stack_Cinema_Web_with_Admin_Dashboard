@@ -2,6 +2,10 @@ import { React, useState, useContext } from 'react';
 import { MovieContext } from '../MovieContext';
 import { gqlGetMovies, createMovie, createSessionTime } from '../../data/repository';
 
+/**
+ * Add Movie Modal Component
+ * @param {closeModal} closeModal -- function to close the modal 
+ */
 const AddMovieModal = ({ closeModal }) => {
     const [errorMessage, setErrorMessage] = useState(null);
     const { state, addNewMovieTitle, addNewMovieSessionTime } = useContext(MovieContext);
@@ -14,6 +18,11 @@ const AddMovieModal = ({ closeModal }) => {
         addNewMovieSessionTime(e.target.value);
     }
 
+    /**
+     * Add a new movie and its session time to the database
+     * @param {event} e
+     * @returns 
+     */
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         const title = e.target.elements.title.value;
@@ -98,8 +107,8 @@ const AddMovieModal = ({ closeModal }) => {
     return (
       <div className="modal-overlay" onClick={closeModal}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-          <h2>Add a Movie</h2>
-          <form onSubmit={handleFormSubmit}>
+            <h2>Add a Movie</h2>
+            <form onSubmit={handleFormSubmit}>
                 <label htmlFor="title">Movie Title:</label>
                 <input type="text" id="title" name="title" value={state.addMovieTitle} onChange={handleTitleChange}/><br/>
                 <label htmlFor="sessionTime">Session Time in 12-hour format (am/pm) :</label>

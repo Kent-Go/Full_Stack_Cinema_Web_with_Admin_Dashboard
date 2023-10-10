@@ -21,7 +21,7 @@ import {
 
 function Movies() {
   const [movies, setMovies] = useState([]);
-  const [reservationDate, setReservationDate] = useState({});   // create reservationDate object to store the number of reservation made on each reservation date
+  const [reservationDate, setReservationDate] = useState({});  // Create reservationDate object to store the number of reservation made on each reservation date
   const { state, setSelectedMovie, clearSelectedMovie } = useContext(MovieContext);
   const [addModalOpen, setAddModalOpen] = useState(false);
 
@@ -49,10 +49,13 @@ function Movies() {
       }
     };
 
+    /**
+     * Load all reservations from database and store the number of reservation made on each reservation date
+     */
     const loadReservations = async () => {
       // Fetch all reservations
       const reservationsData =  await gqlAllReservations();
-      // create new object to store number of reservation per day
+      // Create new object to store number of reservation per day
       const reservationDateObject = {};
   
       // Iterate the reservationsData to get each reservation date occurence
@@ -123,8 +126,8 @@ function Movies() {
           min: 0,
           max: 120,
         },
-        xAxes: [{ barPercentage: 0.5 }]
-      }
+      xAxes: [{ barPercentage: 0.5 }]
+    }
   };
 
   const reservationDataOptions = {
@@ -146,10 +149,13 @@ function Movies() {
           max: 30,
           step: 2
         },
-        xAxes: [{ barPercentage: 0.5 }]
-      }
+      xAxes: [{ barPercentage: 0.5 }]
+    }
   };
 
+  /**
+   * Create movieViewData object to store the number of views for each movie
+   */
   const movieViewData = {
     labels: movies.map(movie => movie.title),
     datasets: [
@@ -163,6 +169,9 @@ function Movies() {
     ]
   };
 
+  /**
+   * Create reservationData object to store the number of reservation made on each reservation date
+   */
   const reservationData = {
     labels: Object.keys(reservationDate).map(date => date),
     datasets: [
@@ -178,7 +187,6 @@ function Movies() {
 
   return (
     <div>
-
       <div className="chart-title">
         <h1>Number Of View Per Movie</h1>
       </div>

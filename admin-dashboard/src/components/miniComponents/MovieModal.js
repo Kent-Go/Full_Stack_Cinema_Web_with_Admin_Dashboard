@@ -142,33 +142,33 @@ const MovieModal = ({isOpen, closeModal, movie }) => {
             </>
             )}
             {state.isEditing && (
-            <form onSubmit={handleFormSubmit}>
-                <label htmlFor="title">Movie Title:</label>
-                <input type="text" id="title" name="title" value={title} onChange={handleTitleChange}/><br/>
-                <label htmlFor="sessionTime">Change Session Time from:</label>
-                <select id="oldSessionTime" name="oldSessionTime">
-                {sessionTimes.map((session, index) => (
-                    <option key={index} value={`${session.sessionTime}`}>
-                        {session.sessionTime}
-                    </option>
-                ))}
-                </select>
-                to: <input type="text" id="newSessionTime" name="newSessionTime"/><br/>
-                <br/>
-                {errorMessage && <div style={{ color: 'red', marginBottom: '10px' }}>{errorMessage}</div>}
-                <input type="button" value="Back" onClick={handleBackButtonClick}/>
-                <input type="submit" value="Submit"/>
-            </form>
+                <form onSubmit={handleFormSubmit}>
+                    <label htmlFor="title">Movie Title:</label>
+                    <input type="text" id="title" name="title" value={title} onChange={handleTitleChange}/><br/>
+                    <label htmlFor="sessionTime">Change Session Time from:</label>
+                    <select id="oldSessionTime" name="oldSessionTime">
+                    {sessionTimes.map((session, index) => (
+                        <option key={index} value={`${session.sessionTime}`}>
+                            {session.sessionTime}
+                        </option>
+                    ))}
+                    </select>
+                    to: <input type="text" id="newSessionTime" name="newSessionTime"/><br/>
+                    <br/>
+                    {errorMessage && <div style={{ color: 'red', marginBottom: '10px' }}>{errorMessage}</div>}
+                    <input type="button" value="Back" onClick={handleBackButtonClick}/>
+                    <input type="submit" value="Submit"/>
+                </form>
             )}
             {state.showConfirmation && (
-            <>
-                <h3>Are you sure you want to delete <strong>{movie.title}</strong>?</h3>
-                <button onClick={handleCancelDelete}>Cancel</button>
-                <button onClick={handleConfirmDelete}>Confirm</button>
-            </>
+                <>
+                    <h3>Are you sure you want to delete <strong>{movie.title}</strong>?</h3>
+                    <button onClick={handleCancelDelete}>Cancel</button>
+                    <button onClick={handleConfirmDelete}>Confirm</button>
+                </>
             )}
         </div>
-        </div>
+    </div>
     );
 };
 
