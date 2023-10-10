@@ -39,15 +39,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
         </ul>
     </ol>
 ### Loop Web Admin Dashboard
-1. **Movie Display**: displays "Now Showing" movie informations, such as title, session time, the average rating rated by users, and the view count.
-2. **Configure Movies**:
+1. **View Movies**: allow admin to view "Now Showing" movie informations, such as title, session time, the average rating rated by users, and the view count.
+2. **Movie and Ticket Overview**: allow admin to view the number of view a movie has and the number of ticket reservation per day in the form of a bar chart.
+3. **Movie Management**:
    <ul>
         <li>add new movie and its information, such as title and session time.</li>
         <li>edit movie information.</li>
         <li>delete movie</li>
     </ul>
-3. **Block Users**: allow admin block/unblock users from accessing writing reviews in Loop Web.
-4. **Delete Reviews**: allow admin to delete reviews, which will change it to "[**** This review has been deleted by the admin ***]"".
+4. **View Users**: allow admin to view all users and their information, such as username, email, hashed password, and sign up date.
+5. **Block Users**: allow admin block/unblock users from accessing writing reviews in Loop Web.
+6. **Review Overview**: allow admin to view the number of reviews per movie in the form of a bar chart, as well as the average number of review per movie.
+7. **View Reviews**: allow admin to view all reviews and their information, such as the post id, the username of the review poster, the movie title being reviewed, the number of stars, and the written review.
+8. **Delete Reviews**: allow admin to delete reviews, which will change it to "[**** This review has been deleted by the admin ***]".
 
 ## Tech Stack
 **Frontend:** HTML, CSS, JavaScript, React, Bootstrap
