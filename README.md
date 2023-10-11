@@ -30,6 +30,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
             <li>display user profile: username, email, sign up date, and reserved tickets.</li>
             <li>edit user profile: change username and/or email.</li>
             <li>delete user profile</li>
+            <li>view all movie ticket reservations</li>
         </ul>
         <li><strong>Review Page</strong></li>
         <ul>
@@ -37,10 +38,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
             <li>allow users to delete reviews</li>
             <li>allow users to edit reviews</li>
         </ul>
+        <li><strong>Landing Home Page</strong></li>
+        <ul>
+            <li>allow users to reserve movie tickets for a particular session</li>
+        </ul>
     </ol>
 ### Loop Web Admin Dashboard
 1. **View Movies**: allow admin to view "Now Showing" movie informations, such as title, session time, the average rating rated by users, and the view count.
-2. **Movie and Ticket Overview**: allow admin to view the number of view a movie has and the number of ticket reservation per day in the form of a bar chart.
+2. **Movie and Ticket Overview**: allow admin to view the number of view a movie has in the form of a bar chart, and the number of ticket reservation per day in the form of a line chart.
 3. **Movie Management**:
    <ul>
         <li>add new movie and its information, such as title and session time.</li>
