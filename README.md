@@ -20,7 +20,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Features
 ### Loop Web
-1. **Landing Home Page:** display movies and their session times.
+1. **Landing Home Page:** display movies and their session times and average ratings.
 2. **Sign Up Page:** allow users to sign up for an account.
 3. **Sign In Page:** allow users to sign in to their account.
 4. **For logged in users:**
