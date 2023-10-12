@@ -90,6 +90,35 @@ Install dependencies for each folder directory
   npm install
 ```
 
+<strong>Note:</strong> if you encounter an error when installing dependencies for <strong>express</strong> folder directory like the one below:
+```bash
+  npm ERR! code ERESOLVE
+  npm ERR! ERESOLVE could not resolve
+  npm ERR! 
+  npm ERR! While resolving: express-graphql@0.12.0
+  npm ERR! Found: graphql@16.8.1
+  npm ERR! node_modules/graphql
+  npm ERR!   graphql@"^16.8.1" from the root project
+  npm ERR! 
+  npm ERR! Could not resolve dependency:
+  npm ERR! peer graphql@"^14.7.0 || ^15.3.0" from express-graphql@0.12.0
+  npm ERR! node_modules/express-graphql
+  npm ERR!   express-graphql@"^0.12.0" from the root project
+  npm ERR! 
+  npm ERR! Conflicting peer dependency: graphql@15.8.0
+  npm ERR! node_modules/graphql
+  npm ERR!   peer graphql@"^14.7.0 || ^15.3.0" from express-graphql@0.12.0
+  npm ERR!   node_modules/express-graphql
+  npm ERR!     express-graphql@"^0.12.0" from the root project
+  npm ERR! 
+  npm ERR! Fix the upstream dependency conflict, or retry
+  npm ERR! this command with --force or --legacy-peer-deps
+  npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
+```
+Please run the following command instead:
+```bash
+  npm install --force
+```
 ## Running and Accessing the Application Locally
 To run each application, navigate to each of their folder directory (<strong>express</strong>, <strong>react</strong>, and <strong>admin-dashboard</strong>) and run
 ```bash
