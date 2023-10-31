@@ -139,8 +139,8 @@ REST APIs can be accessed on browsers through <a href="http://localhost:4000">ht
 REST APIs can be accessed on browsers through <a href="http://localhost:4000/graphql">http://localhost:4000/graphql</a>.
 
 ## Contributions
-- Evelyn Lie (s3951140)
-- Go Chee Kin (s3955624)
+- Go Chee Kin
+- Evelyn Lie
 
 ## References
 All movie posters displayed in the web application are obtained from the following external sources (cinema website):
