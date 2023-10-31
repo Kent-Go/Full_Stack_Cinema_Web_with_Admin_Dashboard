@@ -1,4 +1,5 @@
-<h1>Full Stack Development - Loop Web for Loop Cinemas</h1>
+<h1>Full Stack Loop Cinema Website with Admin Dashboard</h1>
+<h2>React.js, Node.js, Express.js, MySQL, REST API, GraphQL, Sequelize</h2>
 
 <h2>Table of Contents</h2>
     <li><a href="#overview">Overview</a></li>
@@ -59,7 +60,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 8. **Delete Reviews**: allow admin to delete reviews, which will change it to "[**** This review has been deleted by the admin ***]".
 
 ## Tech Stack
-**Frontend:** HTML, CSS, JavaScript, React, Bootstrap
+**Frontend:** JavaScript, React, Bootstrap, HTML, CSS, 
 
 **HTTP Request Libraries:** Axios
 
