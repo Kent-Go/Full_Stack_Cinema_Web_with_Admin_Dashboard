@@ -76,7 +76,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Clone the project
 
 ```bash
-  git clone https://github.com/rmit-fwp-s2-23/s3951140-s3955624-Assignment-1
+  git clone https://github.com/Kent-Go/Full_Stack_Cinema_Web_with_Admin_Dashboard
 ```
 
 Go to each project's folder directory one at a time
